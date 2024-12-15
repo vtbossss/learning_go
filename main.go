@@ -1,8 +1,21 @@
 package main
-import "fmt"
-import "learning-go/custom_package"
+
+import (
+	"io"
+	"net/http"
+)
+
+func hello(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set(
+		"Content-Type",
+		"text/html",
+	)
+	io.WriteString(
+		res,
+		`<h1>Hello, World!</h1>`,
+	)
+}
 func main() {
-xs := []float64{1,2,3,4}
-avg := custom_package.Average(xs)
-fmt.Println(avg)
+	http.HandleFunc("/hello", hello)
+	http.ListenAndServe(":9000", nil)
 }
