@@ -1,13 +1,8 @@
 package main
-
 import "fmt"
-func square(x *float64) {
-	*x = *x * *x
-	}
+import "learning-go/custom_package"
 func main() {
-	x := 1.5
-	square(&x)
-	
-
-	fmt.Println(x)
-	}
+xs := []float64{1,2,3,4}
+avg := custom_package.Average(xs)
+fmt.Println(avg)
+}
